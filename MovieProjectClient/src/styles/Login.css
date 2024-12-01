@@ -127,7 +127,7 @@
 }
 
 .registration-link a {
-  color: var(--primary-color);
+  color: var(--label-color);
   text-decoration: none;
   transition: color 0.3s ease;
 }
