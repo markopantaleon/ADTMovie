@@ -1,35 +1,34 @@
 import { useNavigate } from "react-router-dom";
-import "./Home.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import MovieCards from "../../../../components/MovieCards/MovieCards";
+import MovieCards from "../../../../components/MovieCards/MovieCards"; // Import with an uppercase M
 import { useMovieContext } from "../../../../context/MovieContext";
+import "./Home.css";
 
 const Home = () => {
   const navigate = useNavigate();
   const [featuredMovie, setFeaturedMovie] = useState(null);
   const { movieList, setMovieList, setMovie } = useMovieContext();
 
-  const getMovies = () => {
-    axios
-      .get("/movies")
-      .then((response) => {
-        setMovieList(response.data);
-        const random = Math.floor(Math.random() * response.data.length);
-        setFeaturedMovie(response.data[random]);
-      })
-      .catch((e) => console.log(e));
-  };
-
   useEffect(() => {
-    getMovies();
+    const fetchMovies = async () => {
+      try {
+        const response = await axios.get("/movies");
+        setMovieList(response.data);
+        const randomIndex = Math.floor(Math.random() * response.data.length);
+        setFeaturedMovie(response.data[randomIndex]);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchMovies();
   }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (movieList.length) {
-        const random = Math.floor(Math.random() * movieList.length);
-        setFeaturedMovie(movieList[random]);
+        const randomIndex = Math.floor(Math.random() * movieList.length);
+        setFeaturedMovie(movieList[randomIndex]);
       }
     }, 5000);
     return () => clearInterval(interval);
