@@ -157,7 +157,7 @@
     transform: rotate(0deg);
   }
   100% {
-    transform: rotate(360deg); /**/
+    transform: rotate(360deg);
   }
 }
 
@@ -171,6 +171,6 @@
   }
 
   .input-group label {
-    font-size: var(--font-smaller); /**/
+    font-size: var(--font-smaller);
   }
 }
