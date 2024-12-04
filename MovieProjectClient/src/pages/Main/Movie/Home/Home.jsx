@@ -11,7 +11,7 @@ const Home = () => {
   const { movieList, setMovieList, setMovie } = useMovieContext();
 
   useEffect(() => {
-    const fetchMovies = async () => {
+    const getMovies = async () => {
       try {
         const response = await axios.get("/movies");
         setMovieList(response.data);
@@ -21,7 +21,7 @@ const Home = () => {
         console.error(error);
       }
     };
-    fetchMovies();
+    getMovies();
   }, []);
 
   useEffect(() => {
