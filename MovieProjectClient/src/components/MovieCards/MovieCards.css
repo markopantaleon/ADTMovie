@@ -1,0 +1,27 @@
+:root {
+  --primary-color: #8b5dff;
+  --primary-hover-color: #6a42c2;
+  --secondary-color: #121212;
+  --text-color: #fff7d1;
+  --error-color: #ff5e57;
+  --font-small: 0.875rem;
+}
+
+.card {
+  max-width: 180px;
+  border: 10px solid #607d8b;
+  background-color: #455a64;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.card img {
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.card:hover {
+  background-color: var(--primary-hover-color);
+  border: 10px solid var(--primary-color);
+}
