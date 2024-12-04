@@ -11,20 +11,33 @@ function Main() {
   const handleLogout = () => {
     const confirmLogout = window.confirm("Are you sure you want to logout?");
     if (confirmLogout) {
-      setIsLoggingOut(true); // Show loading spinner
+      setIsLoggingOut(true);
       setTimeout(() => {
         localStorage.removeItem("accessToken");
-        setIsLoggingOut(false); // Hide loading spinner
-        navigate("/login"); // Redirect to login page after logout
-      }, 3000); // 3-second delay before navigating
+        setIsLoggingOut(false);
+        navigate("/login");
+      }, 3000);
     }
   };
+  useEffect(() => {
+    if (
+      accessToken === undefined ||
+      accessToken === "" ||
+      accessToken === null
+    ) {
+      handleLogout();
+    }
+  }, []);
 
   useEffect(() => {
-    if (!accessToken) {
-      navigate("/login"); // Redirect to login if no access token
+    const outlet = document.querySelector(".outlet");
+    if (isLoggingOut) {
+      outlet.classList.add("fade-out");
+    } else {
+      outlet.classList.remove("fade-out");
+      outlet.classList.add("fade-in");
     }
-  }, [accessToken, navigate]);
+  }, [isLoggingOut]);
 
   return (
     <div className="main">
