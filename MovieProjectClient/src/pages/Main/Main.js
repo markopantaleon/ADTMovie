@@ -9,7 +9,7 @@ function Main() {
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const handleLogout = () => {
-    const confirmLogout = window.confirm("Are you sure you want to logout?");
+    const confirmLogout = window.confirm("Are you sure you want to logout? ");
     if (confirmLogout) {
       setIsLoggingOut(true);
       setTimeout(() => {
