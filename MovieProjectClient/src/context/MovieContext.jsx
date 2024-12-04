@@ -1,4 +1,4 @@
-import { useContext, createContext, useState } from 'react';
+import { useContext, createContext, useState } from "react";
 
 const MovieContext = createContext({ list: [], selectedMovie: undefined });
 
@@ -11,7 +11,6 @@ function MovieContextProvider({ children }) {
     </MovieContext.Provider>
   );
 }
-
 export default MovieContextProvider;
 
 export const useMovieContext = () => {
