@@ -8,6 +8,7 @@
   --background-overlay: rgba(0, 0, 0, 0.8);
   --font-small: 0.875rem;
   --font-smaller: 0.75rem;
+  --box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .main {
@@ -18,44 +19,40 @@
   font-family: Arial, sans-serif;
 }
 
-.main .container {
+.container {
   display: flex;
   flex-direction: column;
   width: 100vw;
   height: 100vh;
 }
 
-.main .container .outlet {
+.outlet {
   flex-grow: 1;
   padding: 2rem;
   overflow-y: auto;
   transition: opacity 0.3s ease-in-out;
 }
 
-.main .container .navigation {
+.navigation {
   height: 80px;
   background-color: #15171b;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 0 20px;
   align-items: center;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease-in-out;
+  box-shadow: var(--box-shadow);
+  padding: 20px 20px;
 }
 
-.main .container .navigation ul {
+.navigation ul {
   list-style: none;
   display: flex;
   padding: 0;
   margin: 0;
 }
 
-.main .container .navigation ul li {
-  padding: 0px 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.navigation ul li {
+  padding: 0 20px;
   color: var(--text-color);
   font-weight: bold;
   cursor: pointer;
@@ -63,45 +60,50 @@
   transition: all 0.3s ease;
 }
 
-.main .container .navigation ul li a {
+.navigation ul li a {
   text-decoration: none;
   color: var(--text-color);
 }
 
-.main .container .navigation ul li.active a,
-.main .container .navigation ul li:hover a {
-  color: white;
-}
-
-.main .container .navigation ul li.active,
-.main .container .navigation ul li:hover {
+.navigation ul li:hover {
   background: var(--primary-hover-color);
   transform: scale(1.05);
+  border-radius: 4px;
 }
 
-.main .container .navigation ul li.logout,
-.main .container .navigation ul li.login {
-  cursor: pointer;
+.navigation ul li:hover::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--primary-color);
 }
 
-.main .container .navigation ul li.logout {
+.logout {
   color: var(--error-color);
 }
 
-.main .container .navigation ul li.logout:hover {
+.logout:hover {
   background: var(--error-color);
   transform: scale(1.1);
   color: white;
 }
 
-.main .container .navigation ul li.login {
+.login {
   color: var(--primary-color);
 }
 
-.main .container .navigation ul li.login:hover {
+.login:hover {
   background: var(--primary-color);
   transform: scale(1.1);
   color: white;
+}
+
+.loading-container {
+  text-align: center;
+  color: var(--label-color);
 }
 
 .loading-spinner {
@@ -111,7 +113,7 @@
   width: 50px;
   height: 50px;
   animation: spin 1s linear infinite;
-  margin: 50px auto;
+  margin: 20px auto;
 }
 
 @keyframes spin {
@@ -123,11 +125,11 @@
   }
 }
 
-.outlet.fade-out {
+.fade-out {
   opacity: 0;
 }
 
-.outlet.fade-in {
+.fade-in {
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
 }
