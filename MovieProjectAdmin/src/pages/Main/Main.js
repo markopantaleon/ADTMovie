@@ -9,22 +9,19 @@ function Main() {
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const handleLogout = () => {
-    const confirmLogout = window.confirm("Are you sure you want to logout? ");
+    const confirmLogout = window.confirm("Are you sure you want to logout?");
     if (confirmLogout) {
       setIsLoggingOut(true);
       setTimeout(() => {
         localStorage.removeItem("accessToken");
         setIsLoggingOut(false);
-        navigate("/login");
+        navigate("/");
       }, 3000);
     }
   };
+
   useEffect(() => {
-    if (
-      accessToken === undefined ||
-      accessToken === "" ||
-      accessToken === null
-    ) {
+    if (!accessToken) {
       handleLogout();
     }
   }, []);
@@ -45,14 +42,14 @@ function Main() {
         <div className="navigation">
           <ul>
             <li>
-              <a onClick={() => navigate("/home")}>Home</a>
+              <a onClick={() => navigate("/main/movies/home")}>Home</a>
             </li>
             {accessToken ? (
               <li className="logout" onClick={handleLogout}>
                 Log Out
               </li>
             ) : (
-              <li className="login" onClick={() => navigate("/login")}>
+              <li className="login" onClick={() => navigate("/")}>
                 Login
               </li>
             )}
@@ -60,7 +57,14 @@ function Main() {
         </div>
 
         <div className="outlet">
-          {isLoggingOut ? <div className="loading-spinner"></div> : <Outlet />}
+          {isLoggingOut ? (
+            <div className="loading-container">
+              <div className="loading-spinner"></div>
+              <p>Logging out...</p>
+            </div>
+          ) : (
+            <Outlet />
+          )}
         </div>
       </div>
     </div>
