@@ -1,0 +1,133 @@
+:root {
+  --primary-color: #8b5dff;
+  --primary-hover-color: #6a42c2;
+  --secondary-color: #121212;
+  --text-color: #fff7d1;
+  --label-color: #e1cff6;
+  --error-color: #ff5e57;
+  --background-overlay: rgba(0, 0, 0, 0.8);
+  --font-small: 0.875rem;
+  --font-smaller: 0.75rem;
+}
+
+.main {
+  display: flex;
+  overflow: hidden;
+  max-height: 100vh;
+  background-color: var(--secondary-color);
+  font-family: Arial, sans-serif;
+}
+
+.main .container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+.main .container .outlet {
+  flex-grow: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.main .container .navigation {
+  height: 80px;
+  background-color: #15171b;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  align-items: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+}
+
+.main .container .navigation ul {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.main .container .navigation ul li {
+  padding: 0px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.main .container .navigation ul li a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.main .container .navigation ul li.active a,
+.main .container .navigation ul li:hover a {
+  color: white;
+}
+
+.main .container .navigation ul li.active,
+.main .container .navigation ul li:hover {
+  background: var(--primary-hover-color);
+  transform: scale(1.05);
+}
+
+.main .container .navigation ul li.logout,
+.main .container .navigation ul li.login {
+  cursor: pointer;
+}
+
+.main .container .navigation ul li.logout {
+  color: var(--error-color);
+}
+
+.main .container .navigation ul li.logout:hover {
+  background: var(--error-color);
+  transform: scale(1.1);
+  color: white;
+}
+
+.main .container .navigation ul li.login {
+  color: var(--primary-color);
+}
+
+.main .container .navigation ul li.login:hover {
+  background: var(--primary-color);
+  transform: scale(1.1);
+  color: white;
+}
+
+.loading-spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 50px auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.outlet.fade-out {
+  opacity: 0;
+}
+
+.outlet.fade-in {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
